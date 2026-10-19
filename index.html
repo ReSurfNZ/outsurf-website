@@ -61,8 +61,9 @@ nav img{height:48px!important}
 </div>
 <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column">
 <div style="display: grid; align-items: center; min-height: 560px">
-<div id="hero-screens" style="grid-area: 1 / 1; position: relative; min-height: 560px; display: flex; flex-direction: column; justify-content: center; padding: 0 0 20px 0; box-sizing: border-box; opacity: 1; transition: opacity 0.8s ease; pointer-events: auto" aria-hidden="false">
+<div id="hero-screens" style="grid-area: 1 / 1; position: relative; min-height: 560px; display: flex; flex-direction: column; justify-content: center; padding: 0 0 20px 0; box-sizing: border-box; opacity: 0; transition: opacity 0.8s ease; pointer-events: none" aria-hidden="true">
 <a href="https://resurf.nz" aria-label="Visit the ReSurf website" style="position: absolute; inset: 0; z-index: 2"></a>
+<span style="position: absolute; left: 0; top: 0; z-index: 3; background: #0f2d20; color: #f5f1e8; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 8px 14px; border-radius: 999px">Websites &amp; social media</span>
 <div style="width: 86%; display: flex; flex-direction: column; align-items: center">
 <div style="width: 100%; background: #1c1c1e; border-radius: 14px; padding: 10px; box-sizing: border-box; box-shadow: 0 24px 50px rgba(15,45,32,0.18)"><img src="images/work-resurf-website.jpg" alt="ReSurf website on a computer screen" style="width: 100%; aspect-ratio: 800 / 464; object-fit: cover; display: block; border-radius: 5px"></div>
 <div style="width: 64px; height: 44px; background: #c9c3b6"></div>
@@ -156,7 +157,7 @@ nav img{height:48px!important}
 </div>
 </div>
 </div>
-<div id="hero-results" style="grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; opacity: 0; transition: opacity 0.8s ease; pointer-events: none" aria-hidden="true">
+<div id="hero-results" style="grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; opacity: 1; transition: opacity 0.8s ease; pointer-events: auto" aria-hidden="false">
 <div style="background: #8b1d2c; color: #ffffff; border-radius: 28px; padding: 44px 44px 40px; display: flex; flex-direction: column; gap: 6px">
 <span style="font-size: 14px; letter-spacing: 3px; font-weight: 700; color: #f2d7d2">REAL CLIENT RESULT</span>
 <div style="font-family: 'Anton', sans-serif; font-size: 150px; line-height: 1">242</div>
@@ -170,8 +171,8 @@ nav img{height:48px!important}
 </div>
 </div>
 <div style="display: flex; justify-content: center; gap: 4px; margin-top: 18px">
-<button type="button" aria-label="Show website and social work" id="dot-screens" style="width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0"><span style="width: 12px; height: 12px; border-radius: 50%; background: #8b1d2c; display: block"></span></button>
 <button type="button" aria-label="Show client results" id="dot-results" style="width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0"><span style="width: 12px; height: 12px; border-radius: 50%; background: #c9c3b6; display: block"></span></button>
+<button type="button" aria-label="Show website and social work" id="dot-screens" style="width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0"><span style="width: 12px; height: 12px; border-radius: 50%; background: #8b1d2c; display: block"></span></button>
 </div>
 </div>
 </section>
@@ -382,12 +383,12 @@ LinkedIn</a>
 </div>
 <script>
 (function(){
-var s=document.getElementById('hero-screens'),r=document.getElementById('hero-results'),ds=document.querySelector('#dot-screens span'),dr=document.querySelector('#dot-results span'),on=false,t;
+var s=document.getElementById('hero-screens'),r=document.getElementById('hero-results'),ds=document.querySelector('#dot-screens span'),dr=document.querySelector('#dot-results span'),on=true,t;
 function show(res){on=res;s.style.opacity=res?0:1;r.style.opacity=res?1:0;s.style.pointerEvents=res?'none':'auto';r.style.pointerEvents=res?'auto':'none';s.setAttribute('aria-hidden',res);r.setAttribute('aria-hidden',!res);ds.style.background=res?'#c9c3b6':'#8b1d2c';dr.style.background=res?'#8b1d2c':'#c9c3b6';}
 function start(){clearInterval(t);t=setInterval(function(){show(!on)},10000);}
 document.getElementById('dot-screens').onclick=function(){show(false);start();};
 document.getElementById('dot-results').onclick=function(){show(true);start();};
-start();
+show(true);start();
 })();
 </script>
 </body>
