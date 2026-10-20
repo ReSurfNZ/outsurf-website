@@ -14,6 +14,9 @@
 <style>
 body{margin:0;background:#f5f1e8}
 a{color:#8b1d2c}a:hover{color:#0f2d20}
+.cf-label{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700;color:#0f2d20}
+.cf-input{font:inherit;font-weight:400;font-size:16px;color:#0f2d20;background:#ffffff;border:1.5px solid #c9c3b6;border-radius:12px;padding:12px 14px;box-sizing:border-box;width:100%}
+.cf-input:focus{outline:2px solid #8b1d2c;outline-offset:1px;border-color:#8b1d2c}
 </style>
 <style>html{scroll-behavior:smooth}section[id]{scroll-margin-top:90px}img{max-width:100%}
 @media (max-width: 640px){
@@ -368,9 +371,23 @@ LinkedIn</a>
 </div>
 <div style="flex: 1 1 440px; min-width: 0; background: #f5f1e8; color: #0f2d20; border-radius: 24px; padding: 40px 32px; display: flex; flex-direction: column; gap: 16px; justify-content: center">
 <h3 style="margin: 0; font-size: 26px">Get in touch</h3>
-<p style="margin: 0 0 8px; font-size: 17px; color: #3d5246">Send me an email or give me a call, and we can work out what will help your business most.</p>
-<a href="mailto:josh@outsurfmarketing.co.nz" style="background: #8b1d2c; color: #ffffff; text-decoration: none; border-radius: 999px; padding: 16px; font-weight: 700; text-align: center">Email me</a>
-<a href="tel:0278973797" style="border: 2px solid #0f2d20; color: #0f2d20; text-decoration: none; border-radius: 999px; padding: 14px; font-weight: 700; text-align: center">Call 027 897 3797</a>
+<p style="margin: 0 0 4px; font-size: 17px; color: #3d5246">Flick me a message and I'll get back to you.</p>
+<form id="contact-form" action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 12px">
+<input type="hidden" name="access_key" value="WEB3FORMS_KEY">
+<input type="hidden" name="subject" value="New enquiry from outsurfmarketing.co.nz">
+<input type="hidden" name="from_name" value="OutSurf website">
+<input type="checkbox" name="botcheck" style="display: none" tabindex="-1" autocomplete="off">
+<label class="cf-label">Name<input class="cf-input" type="text" name="name" required autocomplete="name"></label>
+<label class="cf-label">Business<input class="cf-input" type="text" name="business" autocomplete="organization"></label>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<label class="cf-label" style="flex: 1 1 180px">Email<input class="cf-input" type="email" name="email" required autocomplete="email"></label>
+<label class="cf-label" style="flex: 1 1 140px">Phone<input class="cf-input" type="tel" name="phone" autocomplete="tel"></label>
+</div>
+<label class="cf-label">What can I help with?<textarea class="cf-input" name="message" rows="4" required style="resize: vertical"></textarea></label>
+<button type="submit" style="background: #8b1d2c; color: #ffffff; border: 0; border-radius: 999px; padding: 16px; font: inherit; font-weight: 700; cursor: pointer">Send message</button>
+<p id="cf-status" role="status" style="margin: 0; font-size: 16px; font-weight: 700; min-height: 1em"></p>
+</form>
+<p style="margin: 0; font-size: 15px; color: #3d5246">Or call <a href="tel:0278973797" style="color: #8b1d2c; font-weight: 700">027 897 3797</a></p>
 </div>
 </div>
 <div style="border-top: 1px solid #2b4a3b">
@@ -390,6 +407,24 @@ function start(){clearInterval(t);t=setInterval(function(){show(!on)},10000);}
 document.getElementById('dot-screens').onclick=function(){show(false);start();};
 document.getElementById('dot-results').onclick=function(){show(true);start();};
 show(true);start();
+})();
+</script>
+<script>
+(function(){
+var f=document.getElementById('contact-form'),s=document.getElementById('cf-status');
+if(!f)return;
+f.addEventListener('submit',function(e){
+e.preventDefault();
+var b=f.querySelector('button[type=submit]');b.disabled=true;b.textContent='Sending…';s.textContent='';
+fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+.then(function(r){return r.json();})
+.then(function(d){
+if(d.success){f.reset();s.style.color='#1d5236';s.textContent='Thanks, got it. I\'ll be in touch soon.';}
+else{throw new Error();}
+})
+.catch(function(){s.style.color='#8b1d2c';s.textContent='Sorry, that didn\'t send. Please email josh@outsurfmarketing.co.nz or call 027 897 3797.';})
+.finally(function(){b.disabled=false;b.textContent='Send message';});
+});
 })();
 </script>
 </body>
