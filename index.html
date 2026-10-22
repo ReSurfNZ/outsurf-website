@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HDHB2XW2C8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HDHB2XW2C8');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OutSurf Marketing | Marketing made simple</title>
 <meta name="description" content="OutSurf Marketing helps local businesses with social media, Meta ads, websites, Google Business Profile, email marketing, signage and print.">
@@ -426,7 +429,7 @@ var b=f.querySelector('button[type=submit]');b.disabled=true;b.textContent='Send
 fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
 .then(function(r){return r.json();})
 .then(function(d){
-if(d.success){f.reset();s.style.color='#1d5236';s.textContent='Thanks, got it. I\'ll be in touch soon.';}
+if(d.success){f.reset();if(window.gtag)gtag('event','generate_lead',{form:'contact'});s.style.color='#1d5236';s.textContent='Thanks, got it. I\'ll be in touch soon.';}
 else{throw new Error();}
 })
 .catch(function(){s.style.color='#8b1d2c';s.textContent='Sorry, that didn\'t send. Please email josh@outsurfmarketing.co.nz or call 027 897 3797.';})
