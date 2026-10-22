@@ -18,7 +18,7 @@ a{color:#8b1d2c}a:hover{color:#0f2d20}
 .cf-input{font:inherit;font-weight:400;font-size:16px;color:#0f2d20;background:#ffffff;border:1.5px solid #c9c3b6;border-radius:12px;padding:12px 14px;box-sizing:border-box;width:100%}
 .cf-input:focus{outline:2px solid #8b1d2c;outline-offset:1px;border-color:#8b1d2c}
 </style>
-<style>html{scroll-behavior:smooth}section[id]{scroll-margin-top:90px}img{max-width:100%}
+<style>html{scroll-behavior:smooth}.clients > *{flex:0 0 calc((100% - 64px) / 5)}@media (max-width: 1000px){.clients > *{flex-basis:calc((100% - 32px) / 3)}}@media (max-width: 640px){.clients > *{flex-basis:calc((100% - 16px) / 2)}}section[id]{scroll-margin-top:90px}img{max-width:100%}
 @media (max-width: 640px){
 .stats{gap:10px!important}
 .stats > div > div:first-child{font-size:30px!important}
@@ -342,7 +342,7 @@ nav img{height:48px!important}
 <!-- CLIENTS -->
 <section aria-labelledby="clients-heading" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 104px">
 <h2 id="clients-heading" style="margin: 0 0 36px; font-family: 'Anton', sans-serif; font-weight: 400; font-size: 44px; line-height: 1.1; color: #8b1d2c">Proud to be working with some awesome local businesses</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<div class="clients" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px">
 <a href="https://www.russellproperties.co.nz" style="background: #ffffff; border-radius: 16px; height: 120px; padding: 18px; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><img src="images/client-russell.png" alt="Russell Properties" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block"></a>
 <a href="https://360fencehire.co.nz" style="background: #ffffff; border-radius: 16px; height: 120px; padding: 18px; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><img src="images/client-360.png" alt="360 Fence Hire" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block"></a>
 <a href="https://vistalite.co.nz/contact/vistalite-wellington" style="background: #ffffff; border-radius: 16px; height: 120px; padding: 18px; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><img src="images/client-vistalite.png" alt="Vistalite Windows &amp; Doors" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block"></a>
