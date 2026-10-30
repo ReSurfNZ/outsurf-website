@@ -106,9 +106,10 @@ nav img{height:48px!important}
 <label class="cf-label">Name<input class="cf-input" type="text" name="name" required autocomplete="name"></label>
 <label class="cf-label">Business name<input class="cf-input" type="text" name="business" required autocomplete="organization"></label>
 <label class="cf-label">Website or Facebook page <span>(if you have one)</span><input class="cf-input" type="text" name="website" placeholder="e.g. yourbusiness.co.nz"></label>
+<p style="margin: 4px 0 -4px; font-size: 15px; color: #3d5246">Email or phone, whichever suits you best</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
-<label class="cf-label" style="flex: 1 1 180px">Email<input class="cf-input" type="email" name="email" required autocomplete="email"></label>
-<label class="cf-label" style="flex: 1 1 140px">Phone<input class="cf-input" type="tel" name="phone" required autocomplete="tel"></label>
+<label class="cf-label" style="flex: 1 1 180px">Email<input class="cf-input" type="email" name="email" autocomplete="email"></label>
+<label class="cf-label" style="flex: 1 1 140px">Phone<input class="cf-input" type="tel" name="phone" autocomplete="tel"></label>
 </div>
 <label class="cf-label">What would you most like help with? <span>(optional)</span><textarea class="cf-input" name="message" rows="3" style="resize: vertical" placeholder="e.g. more enquiries, a better website, keeping up with social media"></textarea></label>
 <button type="submit" style="background: #8b1d2c; color: #ffffff; border: 0; border-radius: 999px; padding: 16px; font: inherit; font-weight: 700; cursor: pointer; font-size: 18px">Get my free review</button>
@@ -230,7 +231,11 @@ nav img{height:48px!important}
 (function(){
 var f=document.getElementById('review-form'),s=document.getElementById('cf-status');
 if(!f)return;
+var em=f.elements.email,ph=f.elements.phone;
+function chk(){em.setCustomValidity(em.value.trim()||ph.value.trim()?'':'Please add an email or phone number so I can get back to you.');}
+em.addEventListener('input',chk);ph.addEventListener('input',chk);
 f.addEventListener('submit',function(e){
+chk();if(!f.checkValidity()){e.preventDefault();f.reportValidity();return;}
 e.preventDefault();
 var b=f.querySelector('button[type=submit]');b.disabled=true;b.textContent='Sending…';s.textContent='';
 fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})

@@ -413,6 +413,10 @@ LinkedIn</a>
 <button type="submit" style="background: #8b1d2c; color: #ffffff; border: 0; border-radius: 999px; padding: 16px; font: inherit; font-weight: 700; cursor: pointer">Send message</button>
 <p id="cf-status" role="status" style="margin: 0; font-size: 16px; font-weight: 700; min-height: 1em"></p>
 </form>
+<div id="cf-thanks" role="status" hidden style="background: #ffffff; border-radius: 16px; padding: 28px 24px; text-align: center">
+<p style="margin: 0 0 8px; font-size: 26px; font-weight: 700; color: #1d5236">Thanks, got it!</p>
+<p style="margin: 0; font-size: 17px; color: #3d5246">I'll be in touch soon.</p>
+</div>
 <p style="margin: 0; font-size: 15px; color: #3d5246">Or call <a href="tel:0278973797" style="color: #8b1d2c; font-weight: 700">027 897 3797</a></p>
 </div>
 </div>
@@ -445,7 +449,7 @@ var b=f.querySelector('button[type=submit]');b.disabled=true;b.textContent='Send
 fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
 .then(function(r){return r.json();})
 .then(function(d){
-if(d.success){f.reset();if(window.gtag)gtag('event','generate_lead',{form:'contact'});if(window.fbq)fbq('track','Contact');s.style.color='#1d5236';s.textContent='Thanks, got it. I\'ll be in touch soon.';}
+if(d.success){f.reset();if(window.gtag)gtag('event','generate_lead',{form:'contact'});if(window.fbq)fbq('track','Contact');f.hidden=true;var t=document.getElementById('cf-thanks');t.hidden=false;t.scrollIntoView({behavior:'smooth',block:'center'});}
 else{throw new Error();}
 })
 .catch(function(){s.style.color='#8b1d2c';s.textContent='Sorry, that didn\'t send. Please email josh@outsurfmarketing.co.nz or call 027 897 3797.';})
